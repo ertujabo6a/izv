@@ -130,7 +130,40 @@ def generate_sinus(show_figure: bool = False, save_path: str | None = None):
     if show_figure:
         plt.show()
 
-
-
+"""
+"""
 def download_data() -> List[Dict[str, Any]]:
-    pass
+    # URL from which you are downloading the data
+    url = "https://ehw.fit.vutbr.cz/izv/stanice.html"
+    
+    # Download the content of the web page
+    response = requests.get(url)
+    if response.status_code == 200:
+        html = response.text
+        soup = BeautifulSoup(html, 'html.parser')
+        
+        # Find the table on the page
+        table = soup.find('table')
+        
+        # Initialize a list for records
+        data = []
+        
+        # Iterate through the table rows and create records
+        for row in table.find_all('tr')[1:]:  # Skip the first row with headers
+            columns = row.find_all('td')
+            if len(columns) >= 4:
+                position = columns[0].text.strip()
+                lat = float(columns[1].text.strip())
+                long = float(columns[2].text.strip())
+                height = float(columns[3].text.strip())
+                
+                # Create a record
+                station_data = {'position': position, 'lat': lat, 'long': long, 'height': height}
+                
+                # Add the record to the list
+                data.append(station_data)
+        
+        return data
+    else:
+        print("Error while downloading the page.")
+        return []
