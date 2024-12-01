@@ -2,11 +2,6 @@
 """
 IZV cast1 projektu
 Autor: Aleksandr Dmitriev (240259/xdmitr01)
-
-Detailni zadani projektu je v samostatnem projektu e-learningu.
-Nezapomente na to, ze python soubory maji dane formatovani.
-
-Muzete pouzit libovolnou vestavenou knihovnu a knihovny predstavene na prednasce
 """
 from bs4 import BeautifulSoup
 import requests
@@ -159,4 +154,3 @@ def download_data() -> Dict[str, List[Any]]:
             weather_station_data['heights'].append(height)
 
     return weather_station_data
-
