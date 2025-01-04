@@ -1,7 +1,7 @@
 #!/usr/bin/env python3.12
 # coding=utf-8
 """
-IZV cast1 projektu
+IZV cast2 projektu
 Autor: Aleksandr Dmitriev (240259/xdmitr01)
 """
 
